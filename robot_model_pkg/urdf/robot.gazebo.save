@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!-- Additional Information about the 4-Wheeled Robot -->
+<robot>
+<!--Everything is described here -->
+<!-- http://classic.gazebosim.org/tutorials?tut=ros_urdf&cat=connect_ros -->
+<!--mu1 and mu2 are friction coefficients -->
+
+<gazebo reference="body_link">
+<mu1>0.2</mu1>
+<mu2>0.2</mu2>
+<material>Gazebo/Red</material>
+</gazebo>
+
+<gazebo reference="wheel1_link">
+<mu1>0.2</mu1>
+<mu2>0.2</mu2>
+<material>Gazebo/Yellow</material>
+</gazebo>
+
+<gazebo reference="wheel2_link">
+<mu1>0.2</mu1>
+<mu2>0.2</mu2>
+<material>Gazebo/Yellow</material>
+</gazebo>
+
+<gazebo reference="wheel3_link">
+<mu1>0.2</mu1>
+<mu2>0.2</mu2>
+<material>Gazebo/Yellow</material>
+</gazebo>
+
+<gazebo reference="wheel4_link">
+<mu1>0.2</mu1>
+<mu2>0.2</mu2>
+<material>Gazebo/Yellow</material>
+</gazebo>
+
+<!-- Controller for the 4-wheeled robot -->
+<gazebo>
+<plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+
+		<!--Control update rate in Hz -->
+	<updateRate>100.0</updateRate>
+	<!-- Should be left empty to avoid prblms with sending control commands -->
+	<robotNamespace></robotNamespace>
+	<!-- Robot Kinematics -->
+	<leftFrontJoint>wheel4_joint</leftFrontJoint>
+	<rightFrontJoint>wheel3_joint</rightFrontJoint>
+	<leftRearJoint>wheel2_joint</leftRearJoint>
+	<rightRearJoint>wheel1_joint</rightRearJoint>
+	<wheelSeperation>${body_link_y_dim+wheel_link_length}</wheelSeperation>
+	<wheelDiameter>${2*wheel_link_radius}</wheelDiameter>
+
+	<!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
+	<torque>1000</torque>
+
+	<!-- Topic to receive geometry msgs/Twist message commands, defaults to `cmd_vel` -->
+	<commandTopic> cmd_vel</commandTopic>
+	<!-- Topics to publish nav_msgs/Odometry messages, defaults to `odom` -->
+	<odometryTopic>odom</odometryTopic>
+	<!--Odometry Frame, default to `odom` -->
+	<odometryFrame>odom</odometryFrame>
+	<!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
+	<robotBaseFrame>dummy</robotBaseFrame>
+	<!-- Set to true to publish transforms for the wheel links, defaults to false -->
+	<publishWheelTF>true</publishWheelTF>
+	<!-- Set to true to publish transforms for the odometry, defaults to true -->
+	<publishOdom>true</publishOdom>
+	<!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
+	<publishWheelJointState>true</publishWheelJointState>
+	<!-- Required by Gazebo -->
+	<covariance_x>0.0001</covariance_x>
+	<covariance_y>0.0001</covariance_y>
+	<covariance_yaw>0.01</covariance_yaw>
+
+</plugin>
+
+</gazebo>
