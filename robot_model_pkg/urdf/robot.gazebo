@@ -44,7 +44,7 @@
     <rightFrontJoint>wheel3_joint</rightFrontJoint>
     <leftRearJoint>wheel2_joint</leftRearJoint>
     <rightRearJoint>wheel1_joint</rightRearJoint>
-    <wheelSeperation>${base_link_y_dim+wheel_link_length}</wheelSeperation>
+    <wheelSeparation>${base_link_y_dim+wheel_link_length}</wheelSeparation>
     <wheelDiameter>${2*wheel_link_radius}</wheelDiameter>
     <robotBaseFrame>base_link</robotBaseFrame>
     <torque>100</torque>
