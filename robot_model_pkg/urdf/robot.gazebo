@@ -35,23 +35,4 @@
 <material>Gazebo/Yellow</material>
 </gazebo>
 
-<!-- Controller for the 4-wheeled robot -->
-<gazebo>
-  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-    <updateRate>100.0</updateRate>
-    <robotNamespace>/</robotNamespace>
-    <leftFrontJoint>wheel4_joint</leftFrontJoint>
-    <rightFrontJoint>wheel3_joint</rightFrontJoint>
-    <leftRearJoint>wheel2_joint</leftRearJoint>
-    <rightRearJoint>wheel1_joint</rightRearJoint>
-    <wheelSeparation>${base_link_y_dim+wheel_link_length}</wheelSeparation>
-    <wheelDiameter>${2*wheel_link_radius}</wheelDiameter>
-    <robotBaseFrame>base_link</robotBaseFrame>
-    <torque>100</torque>
-    <topicName>cmd_vel</topicName>
-    <broadcastTF>true</broadcastTF>
-    <publishWheelTF>true</publishWheelTF>
-  </plugin>
-</gazebo>
-
 </robot>
